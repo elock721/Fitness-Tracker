@@ -1,18 +1,9 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
-
-// Requiring our Todo model
 var db = require("../models");
 
 // Routes
-// =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
+  // GET route for workouts
   app.get("/api/workouts", function(req, res) {
     db.Workout.find({})
       .then(function(dbWorkout) {
@@ -20,7 +11,7 @@ module.exports = function(app) {
       });
   });
 
-  // Get route for returning posts of a specific category
+  // GET route for returning range
   app.get("/api/workouts/range", function(req, res) {
     db.Workout.find({}).limit(7)
       .then(function(dbWorkout) {
@@ -28,7 +19,7 @@ module.exports = function(app) {
       });
   });
 
-  // Get route for retrieving a single Workout
+  // PUT route for retrieving a single Workout
   app.put("/api/workouts/:id", function(req, res) {
     db.Workout.findByIdAndUpdate(
         req.params.id, 
@@ -39,7 +30,7 @@ module.exports = function(app) {
         res.json(dbWorkout);
       });
   });
-
+  // POST route for workouts 
   app.post("/api/workouts", function(req, res) {
     db.Workout.create({})
       .then(function(dbWorkout) {
